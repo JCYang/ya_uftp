@@ -1,0 +1,40 @@
+Copyright (c) 2020 JC Yang (bandinfinite@gmail.com)
+All rights reserved.
+
+YA-UFTP is acronym for "Yet Another implementation of the UFTP protocol".
+
+Why reinvent the wheel?
+The first reason is project requirement. About half year ago, one of my work project brought up a requirement to deliver files set to a group of clients(up to hundreds) within the same LAN, and for the sake of efficiency, unicast(TCP) based solution are excluded from consideration.
+Then I found uftp, which is the original implementation of the protocol this piece of work based on. Yet I found it contains several restrictions that does not fit the project well. First it is provided as a standalone application, not a library which are developer friendly to integrate into our app. The second reason is about the license. The original author distribute it in GPL or commercial license if you want to earn from the work, the small company I worked for were not willing to pay the license fee. The last reason is pure personal interest, I recognize it as a good utility to work on for maybe some future personal stuffs, so I'd like to make an implementation that is designed as a standalone library and is developer friendly, and finally, of course, building around modern C++ blocks, which is my favorite language.
+
+Cautions!!!
+This library now is only done with a small feature set. It can not be used as the original uftp replacement yet, IF you're looking for a FULL feature uftp replacement. Two main lack features are encryption and proxy. At the very least, not this moment. Current version should be considered alpha quality. This library is not yet throughout tested. Bugs report are welcome.
+
+Features offer:
+Compatible with the latest uftp 5.0 protocol/implementation. Can cooperate with the original implementation, act as both sender and receiver.
+Support Linux and Windows. I'm not a Unix/Mac guy, patches are welcome. AFAIK, the only module that's blocking the Mac build is the network utility, which can be easily fixed.
+Simple and easy to use, developer friendly API.
+Both sender and receiver are implemented.
+Sender side speed rate control.
+Several key features with same semantic of the original uftp. Temporary folder support with the same semantic of the original implementation. 
+Optional progress monitor, which enable the user to learn major events in the ongoing progress of the session.
+Task/Session termination.
+Load balanced multithreading to utilize any number or cores you like for parallel tasks/sessions. By default it will utilize all cores when necessary. Single task will not benefit from more than two cores at all. But if you're running dozen of tasks in parallel at full speed of your network adapter, you're good to go. 
+Decoupled asynchronous network IO from synchronize disk IO which can leverage the full power of modern hardware such as SSD and 10GBe or faster network adapter.
+Of course, expect bugs, guys.
+
+Lack features:
+Session encryption is not yet implemented. All things are done in plaintext. For internal LAN based application this probably is not a big deal.
+Proxy is not yet implemented. So both sides of the communication are not meant to be resided in different subnets.
+No congestion control.
+
+Future roadmap:
+In short term, will clean up ugly code leftover and fix any newly found bugs, fix some incomplete small features and provide better documents.
+In long term, I can't promise anything especially with deadlines set at the moment, except fatal bugs fixing will be done ASAP.
+Of course, I may change my position anytime when I feel comfort to further implement it as a full fledge uftp replacement.
+
+Read the sender_demo.cpp and receiver_demo.cpp in example folder, for trivial demos and you'll get it. It's simple.
+
+The library is distributed under the Boost Software License, Version 1.0. (See accompanying file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
+
+Bug report and any implementations/documents(not-yet-availbale!!!) improvement are welcome.

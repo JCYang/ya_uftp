@@ -1,0 +1,13 @@
+This is not a header-only library, you need to build it.
+
+Requirement
+
+C++17 compiler, gcc 8 or later, clang 6 or later, latest MSVC are ok.
+CMake 3.12 or newer.
+Not too old Boost with filesystem built(1.66 and newer are fine).
+
+By default, static library will be built, if you need shared library, set BUILD_SHARED_LIBS=ON.
+'make install' or 'ninja install' or whatever build system you use will bring you the export headers and libs.
+
+Usage:
+include ya_uftp.hpp and link your project to either libuftp_sender or libuftp_receiver.
